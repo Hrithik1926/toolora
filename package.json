@@ -1,0 +1,20 @@
+{
+  "name": "toolora",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:client\" \"npm:dev:server\"",
+    "dev:client": "npm --workspace client run dev",
+    "dev:server": "npm --workspace server run dev",
+    "build": "npm --workspace client run build",
+    "test": "npm --workspace client test",
+    "start": "npm --workspace server start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
