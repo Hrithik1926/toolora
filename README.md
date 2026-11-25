@@ -74,6 +74,14 @@ The generated frontend files are in `client/dist`. Deploy the client and API as 
 
 Possible hosting choices include Vercel or Netlify for the static client, Render or Railway for the Express API, and MongoDB Atlas if persistence is later required. These providers may offer free tiers or trials, but availability, limits and pricing can change; do not assume any service is permanently free.
 
+### Deploy the client to Vercel
+
+The repository includes a Vercel configuration for the static Vite client. Import the GitHub repository into Vercel and keep the project root set to the repository root. Vercel uses `npm run build` and publishes `client/dist`; the rewrite serves the React application for client-side routes.
+
+The build uses Vercel's production domain for the sitemap and `robots.txt` automatically. If you have a custom domain, set `VITE_SITE_URL` to that production origin in the Vercel project's Production environment variables. Add `VITE_GA_ID` or `VITE_CURRENCY_API_URL` only if you intend to enable those client-side integrations; all `VITE_` values are public.
+
+This deploys the frontend only. The optional Express health API is not required by the current client and must be deployed separately if you later add client features that call it.
+
 For a deployment:
 
 1. Build the client with `npm run build` and set the hosting output directory to `client/dist`.

@@ -5,7 +5,8 @@ import { tools } from '../src/data/tools.js'
 
 const envResult = dotenv.config({ path: resolve('..', '.env'), quiet: true })
 if (envResult.error && envResult.error.code !== 'ENOENT') throw envResult.error
-const base = (process.env.VITE_SITE_URL || 'https://toolora.example').replace(/\/+$/, '')
+const siteUrl = process.env.VITE_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'https://toolora.example')
+const base = siteUrl.replace(/\/+$/, '')
 let origin
 try {
   origin = new URL(base)
